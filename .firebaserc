@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "angular-kanban-e5df5": {
+      "hosting": {
+        "angular-kanban": [
+          "angular-kanban-e5df5"
+        ]
+      }
+    }
+  }
+}

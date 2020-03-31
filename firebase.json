@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "angular-kanban",
+      "public": "dist/angular-kanban",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}
