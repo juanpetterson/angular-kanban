@@ -2,18 +2,18 @@
   <mat-sidenav
     #drawer
     class="sidenav"
-    fixedInViewPort
+    fixedInViewport
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
     [opened]="false"
   >
-    <mat-toolbar>
-      Menu
-    </mat-toolbar>
+    <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item routerLink="/" (click)="drawer.close()">Home</a>
       <a mat-list-item routerLink="/login" (click)="drawer.close()">Login</a>
-      <a mat-list-item routerLink="/kanban" (click)="drawer.close()">Kanban</a>
+      <a mat-list-item routerLink="/kanban" (click)="drawer.close()"
+        >Kanban Demo</a
+      >
       <a mat-list-item routerLink="/customers" (click)="drawer.close()"
         >SSR Demo</a
       >
@@ -23,26 +23,41 @@
     <mat-toolbar>
       <button
         type="button"
-        aria-label="Tottle sidenav"
-        mat-button
+        aria-label="Toggle sidenav"
+        mat-icon-button
         (click)="drawer.toggle()"
         *ngIf="isHandset$ | async"
       >
-        <mat-icon aria-label="Side nav toggle icon">
-          menu
-        </mat-icon>
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span class="logo" routerLink="/">Angular Firestarter</span>
+      <span class="logo" routerLink="/">🔥 Angular Firestarter</span>
 
       <span class="fill-space"></span>
       <div *ngIf="!(isHandset$ | async)">
-        <a mat-button routerLink="/kanban">Kanban Demo</a>
-        <a mat-button routerLink="/customers">SSR Demo</a>
+        <a mat-button routerLink="/kanban">🍱 Kanban Demo</a>
+        <a mat-button routerLink="/customers">⚡ SSR Demo</a>
 
-        <a mat-button routerLink="/login">Login</a>
+        <a mat-button routerLink="/login" *ngIf="!(afAuth.authState | async)"
+          >🔑 Login</a
+        >
+        <a
+          mat-button
+          routerLink="/login"
+          *ngIf="afAuth.authState | async as user"
+        >
+          <img
+            class="avatar"
+            [src]="user.photoURL || 'assets/default-user.svg'"
+          />
+          Profile
+        </a>
       </div>
 
-      <button mat-icon-button [matMenuTriggerFor]="menu">
+      <button
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        aria-label="Example icon-button with a menu"
+      >
         <mat-icon>more_vert</mat-icon>
       </button>
 
